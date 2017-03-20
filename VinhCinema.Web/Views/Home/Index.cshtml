@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html ng-app="VinhCinema">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinh Cinema</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")   
+</head>
+<body ng-controller="rootCtrl">
+    
+        <top-bar></top-bar>
+        <div class="row-offcanvas row-offcanvas-left">
+            <side-bar></side-bar>
+            <div id="main">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="visible-xs">
+                            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                        </p>
+                        <div class="page {{pageClass}}" ng-view></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    @Scripts.Render("~/bundles/vendors")
+    @Scripts.Render("~/bundles/spa")
+</body>
+</html>
+

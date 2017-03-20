@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinhCinema.Data", "VinhCinema.Data\VinhCinema.Data.csproj", "{00E46C3D-95B8-44E6-95A6-DE70BD0CA0C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinhCinema.Entities", "VinhCinema.Entities\VinhCinema.Entities.csproj", "{A8CF0619-B686-4617-B696-7ACDDB969466}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinhCinema.Services", "VinhCinema.Services\VinhCinema.Services.csproj", "{054083B8-58DE-478A-AF70-C51F48B58D72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinhCinema.Web", "VinhCinema.Web\VinhCinema.Web.csproj", "{027D0745-DB59-46FD-985E-CAEEF256840F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00E46C3D-95B8-44E6-95A6-DE70BD0CA0C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00E46C3D-95B8-44E6-95A6-DE70BD0CA0C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00E46C3D-95B8-44E6-95A6-DE70BD0CA0C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00E46C3D-95B8-44E6-95A6-DE70BD0CA0C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8CF0619-B686-4617-B696-7ACDDB969466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8CF0619-B686-4617-B696-7ACDDB969466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8CF0619-B686-4617-B696-7ACDDB969466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8CF0619-B686-4617-B696-7ACDDB969466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{054083B8-58DE-478A-AF70-C51F48B58D72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{054083B8-58DE-478A-AF70-C51F48B58D72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{054083B8-58DE-478A-AF70-C51F48B58D72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{054083B8-58DE-478A-AF70-C51F48B58D72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{027D0745-DB59-46FD-985E-CAEEF256840F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{027D0745-DB59-46FD-985E-CAEEF256840F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{027D0745-DB59-46FD-985E-CAEEF256840F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{027D0745-DB59-46FD-985E-CAEEF256840F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://vinhcinema.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = VinhCinema.Data\\VinhCinema.Data.csproj
+		SccProjectName1 = VinhCinema.Data
+		SccLocalPath1 = VinhCinema.Data
+		SccProjectUniqueName2 = VinhCinema.Entities\\VinhCinema.Entities.csproj
+		SccProjectName2 = VinhCinema.Entities
+		SccLocalPath2 = VinhCinema.Entities
+		SccProjectUniqueName3 = VinhCinema.Services\\VinhCinema.Services.csproj
+		SccProjectName3 = VinhCinema.Services
+		SccLocalPath3 = VinhCinema.Services
+		SccProjectUniqueName4 = VinhCinema.Web\\VinhCinema.Web.csproj
+		SccProjectName4 = VinhCinema.Web
+		SccLocalPath4 = VinhCinema.Web
+	EndGlobalSection
+EndGlobal

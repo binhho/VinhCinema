@@ -1,0 +1,163 @@
+﻿<div id="editMovieWrapper">
+    <hr>
+    <div class="row">
+        <div class="alert alert-info alert-dismissable">
+            <a class="panel-close close" data-dismiss="alert">×</a>
+            <i class="fa fa-pencil-square-o"></i>
+            Edit <strong>{{movie.Title}}</strong> movie. Make sure you fill all required fields.
+        </div>
+    </div>
+
+    <div class="row" ng-if="!loadingMovie">
+        <div class="col-xs-7" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+            <div class="text-center">
+                <img ng-src="../../Content/images/movies/{{movie.Image}}" class="avatar img-responsive" alt="avatar">
+                <input type="file" nv-file-select="" uploader="uploader" />
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="50%">Name</th>
+                        <th ng-show="uploader.isHTML5">Size</th>
+                        <th ng-show="uploader.isHTML5">Progress</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in uploader.queue">
+                        <td>
+                            <strong>{{ item.file.name }}</strong>
+                            <div ng-show="uploader.isHTML5" img-thumb="{ file: item._file, height: 100 }"></div>
+                        </td>
+                        <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                        <td ng-show="uploader.isHTML5">
+                            <div class="progress" style="margin-bottom: 0;">
+                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                            <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                            <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                        </td>
+                        <td nowrap>
+                            <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                <span class="glyphicon glyphicon-upload"></span> Upload
+                            </button>
+                            <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                            </button>
+                            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                <span class="glyphicon glyphicon-trash"></span> Remove
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <div>
+                    Queue progress:
+                    <div class="progress" style="">
+                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                    <span class="glyphicon glyphicon-upload"></span> Upload all
+                </button>
+                <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                </button>
+                <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                    <span class="glyphicon glyphicon-trash"></span> Remove all
+                </button>
+            </div>
+        </div>
+
+        <div class="col-xs-5 personal-info">
+            <form class="form-horizontal" role="form" novalidate angular-validator name="editMovieForm" angular-validator-submit="UpdateMovie()">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <label class="control-label">Movie title</label>
+                            <input class="form-control" name="title" type="text" ng-model="movie.Title"
+                                   validate-on="blur" required required-message="'Movie title is required'">
+                        </div>
+                        <div class="col-xs-4 selectContainer">
+                            <label class="control-label">Genre</label>
+                            <select ng-model="movie.GenreId" class="form-control black" ng-options="option.ID as option.Name for option in genres" required></select>
+                            <input type="hidden" name="GenreId" ng-value="movie.GenreId" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label class="control-label">Director</label>
+                            <input class="form-control" type="text" ng-model="movie.Director" name="director"
+                                   validate-on="blur" required required-message="'Movie director is required'">
+                        </div>
+                        <div class="col-xs-4">
+                            <label class="control-label">Writer</label>
+                            <input class="form-control" type="text" ng-model="movie.Writer" name="writer"
+                                   validate-on="blur" required required-message="'Movie writer is required'">
+                        </div>
+                        <div class="col-xs-4">
+                            <label class="control-label">Producer</label>
+                            <input class="form-control" type="text" ng-model="movie.Producer" name="producer"
+                                   validate-on="blur" required required-message="'Movie producer is required'">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label class="control-label">Release Date</label>
+                            <p class="input-group">
+                                <input type="text" class="form-control" name="dateReleased" datepicker-popup="{{format}}" ng-model="movie.ReleaseDate" is-open="datepicker.opened" datepicker-options="dateOptions" ng-required="true" datepicker-append-to-body="true" close-text="Close"
+                                       validate-on="blur" required required-message="'Date Released is required'" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <label class="control-label">Youtube trailer</label>
+                            <input class="form-control" type="text" ng-model="movie.TrailerURI" name="trailerURI"
+                                   validate-on="blur" required required-message="'Movie trailer is required'" ng-pattern="/^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/"
+                                   invalid-message="'You must enter a valid YouTube URL'">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Description</label>
+                    <textarea class="form-control" ng-model="movie.Description" name="description" rows="3"
+                              validate-on="blur" required required-message="'Movie description is required'" />
+                </div>
+                <div class="form-group col-xs-12">
+                    <label class="control-label">Rating</label>
+                    <span component-rating="{{movie.Rating}}" ng-model="movie.Rating" class="form-control"></span>
+                </div>
+                <br />
+                <div class="form-group col-xs-12">
+                    <label class="control-label"></label>
+                    <div class="">
+                        <input type="submit" class="btn btn-primary" value="Update" />
+                        <span></span>
+                        <a class="btn btn-default" ng-href="#/movies/{{movie.ID}}">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+</div>
